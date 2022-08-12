@@ -6,4 +6,9 @@ export const Container = styled.div`
     height: 400px;
     color: white;
     border: 6px double white;
+
+    img{
+        width: 388px;
+        height: 388px;
+    }
 `

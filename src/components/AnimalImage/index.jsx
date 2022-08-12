@@ -1,9 +1,9 @@
 import { Container } from "./styles"
 
-const AnimalImage = () => {
+const AnimalImage = ({ src, animal }) => {
     return(
         <Container>
-            <p>imagem aqui</p>
+            <img src={src} alt={animal} />
         </Container>
     )
 }
