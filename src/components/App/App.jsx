@@ -1,24 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Button from "../Button";
 import Checkbox from "../Checkbox";
 import GlobalStyle from "../../styles/Global";
 import AnimalImage from "../AnimalImage";
-
-//APIs
-import DogApiQuery from "../../services/DogApi"
+// import RandomIntGenerator from "../../functions/RandomIntGenerator";
 
 function App() {
   const pidgeonImage = "https://thumbs.dreamstime.com/b/pombo-engra%C3%A7ado-nas-sapatilhas-e-no-tamp%C3%A3o-violetas-113584093.jpg"
 
-  const [Image, setImage] = useState(pidgeonImage)
-  setImage(DogApiQuery())
-  
   return (
     <>
       <GlobalStyle/>
       <main>
         <AnimalImage 
-        src={Image} 
+        src={pidgeonImage} 
         animal="pombo"/>
         <Button>Gerar nova foto</Button>
         <div>
