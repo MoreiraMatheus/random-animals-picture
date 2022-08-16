@@ -1,20 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "../Button";
 import GlobalStyle from "../../styles/Global";
 import AnimalImage from "../AnimalImage";
 import DogApiQuery from "../../services/DogApi";
-import formatValidation from "../../functions/formatValidation";
+import readTypeImage from "../../functions/readTypeImage";
+import validImageTypes from "../../functions/validImageTypes";
 
 function App() {
-  const [Image, setImage] = useState("https://thumbs.dreamstime.com/b/pombo-engra%C3%A7ado-nas-sapatilhas-e-no-tamp%C3%A3o-violetas-113584093.jpg")
-
-  useEffect(() => {
-    ImageGenerator()
-  }, [])
+  const [ImageUrl, setImageUrl] = useState("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
   
   const ImageGenerator = () => {
-    const DataAPI = DogApiQuery()
-    DataAPI.then(response => setImage(response.url))
+    const maxBytes = 800000
+    DogApiQuery().then(response => {
+      const extension = readTypeImage(response.url)
+      const validImage = response.fileSizeBytes <= maxBytes && validImageTypes(extension)
+      validImage ? setImageUrl(response.url) : ImageGenerator()
+    })
   }
 
   return (
@@ -22,8 +23,8 @@ function App() {
       <GlobalStyle/>
       <main>
         <AnimalImage 
-        src={Image} 
-        animal="pombo"/>
+        src={ImageUrl}
+        animal="random-dog-image"/>
         <Button callback={ImageGenerator}>Gerar nova foto</Button>
       </main>
     </>
