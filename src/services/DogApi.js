@@ -1,10 +1,10 @@
 const DogApiQuery = async() => {
-    let url = ""
+    let data;
     console.log('Buscando na Api dos cachorros')
-    const foto = await fetch("https://random.dog/woof.json")
-    .then(response => response.json())
-    .then(response => url = response.url)
-    return(url)
+    await fetch("https://random.dog/woof.json")
+    .then(response => data = response.json())
+    // .then(response => url = response.url)
+    return(data)
 }
 
 export default DogApiQuery
