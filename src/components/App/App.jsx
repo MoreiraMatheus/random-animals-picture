@@ -22,9 +22,7 @@ function App() {
     <>
       <GlobalStyle/>
       <main>
-        <AnimalImage 
-        src={ImageUrl}
-        animal="random-dog-image"/>
+        <AnimalImage src={ImageUrl} animal="random-dog-image"/>
         <Button callback={ImageGenerator}>Gerar nova foto</Button>
       </main>
     </>
